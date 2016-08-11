@@ -6,6 +6,8 @@ class Estoque {
     Integer qtdMinima;
     Produto produto;
 
+    static belongsTo = [Produto]
+
     static constraints = {
     }
 }

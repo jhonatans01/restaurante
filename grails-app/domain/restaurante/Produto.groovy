@@ -14,6 +14,7 @@ class Produto {
     }
 
     static mapping = {
+        discriminator column: "tipo", value: "GERAL"
         produtosPreferidos joinTable:[name:"preferencias_clientes", key:"produto_id", collum:"cliente_id"]
     }
 }

@@ -10,6 +10,7 @@ class Cliente {
     static hasMany = [produtosPreferidos: Produto]
 
     static constraints = {
+        nome nullable: false, blank: false
     }
 
     static mapping = {
