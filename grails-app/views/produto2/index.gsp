@@ -31,7 +31,7 @@
             })
         }
 
-       function alterarProduto(id){
+       function alterarProduto(id) {
            $.ajax({
                method: "POST",
                url: "/restaurante/produto2/getProduto",
@@ -47,9 +47,34 @@
                }
            })
        }
+
+
+       function excluirProduto(id){
+           if(confirm("Deseja realmente excluir?")) {
+               $.ajax({
+                   method: "POST",
+                   url: "/restaurante/produto2/excluirProduto",
+                   data: {"id": id},
+                   success: function (data) {
+
+                       if (data.mensagem == "OK") {
+                           carregarLista()
+                       } else {
+                           $("#divMensagem").html("Nao foi possivel excluir")
+                       }
+                   }
+               })
+           }
+       }
+
         function retornoSalvarProduto(data) {
             if(data.mensagem=="OK"){
                 $("#divMensagem").html("Produto salvo")
+                $("#formUsuario input[name=id]").val("")
+                $("#formUsuario input[name=nome]").val("")
+                $("#formUsuario input[name=preco]").val("")
+                $("#formUsuario input[name=qtde]").val("")
+                $("#formUsuario input[name=qtdeMin]").val("")
                 carregarLista()
             } else {
                 $("#divMensagem").html("Erro ao salvar")

@@ -13,7 +13,10 @@
             <td>${produto.preco}</td>
             <td>${produto.estoque.quantidade}</td>
             <td>${produto.estoque.qtdMinima}</td>
-            <td><a href="javascript: alterarProduto(${produto.id})">Alterar</a></td>
+            <td>
+                <a href="javascript: alterarProduto(${produto.id})">Alterar</a>
+                <a href="javascript: excluirProduto(${produto.id})">Excluir</a>
+            </td>
         </tr>
     </g:each>
 </table>

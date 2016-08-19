@@ -11,7 +11,15 @@ class Produto2Controller {
 
     def salvarProduto() {
         def retorno = [:]
-        Produto p = new Produto()
+        Produto p
+
+        if (params.id){
+            p = Produto.get(params.id)
+        } else {
+            p = new Produto()
+            p.estoque = new Estoque()
+        }
+
         p.nome = params.nome
         p.preco = params.preco.toInteger()
         p.estoque = new Estoque()
@@ -37,5 +45,19 @@ class Produto2Controller {
     def getProduto(){
         Produto p = Produto.get(params.id)
         render p as JSON
+    }
+
+    def excluirProduto(){
+        def retorno = [:]
+        Produto p = Produto.get(params.id)
+
+        try {
+            p.delete(flush: true)
+            retorno["mensagem"]="OK"
+        }catch (Exception e){
+            retorno["mensagem"]="OK"
+        }
+
+        render retorno as JSON
     }
 }
